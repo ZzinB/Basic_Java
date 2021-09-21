@@ -14,16 +14,16 @@ public class TodoUtil {
 		
 		System.out.println("\n"
 				+ "========== Create item Section\n"
-				+ "enter the title\n");
+				+ "일정제목을 입력하세요. \n");
 		
-		title = sc.next();
+		title = sc.nextLine();
 		if (list.isDuplicate(title)) {
-			System.out.printf("title can't be duplicate");
+			System.out.printf("중복된 일정입니다.");
 			return;
 		}
 		
-		System.out.println("enter the description");
-		desc = sc.next();
+		System.out.println("일정내용을 입력하세요");
+		desc = sc.nextLine();
 		
 		TodoItem t = new TodoItem(title, desc);
 		list.addItem(t);
@@ -36,7 +36,7 @@ public class TodoUtil {
 		
 		System.out.println("\n"
 				+ "========== Delete Item Section\n"
-				+ "enter the title of item to remove\n"
+				+ "삭제할 일정제목을 입력하세요. \n"
 				+ "\n");
 		
 		for (TodoItem item : l.getList()) {
@@ -54,29 +54,29 @@ public class TodoUtil {
 		
 		System.out.println("\n"
 				+ "========== Edit Item Section\n"
-				+ "enter the title of the item you want to update\n"
+				+ "변경하고 싶은 일정제목을 입력하세요. \n"
 				+ "\n");
-		String title = sc.next().trim();
+		String title = sc.nextLine().trim();
 		if (!l.isDuplicate(title)) {
-			System.out.println("title doesn't exist");
+			System.out.println("이름이 존재하지 않습니다. ");
 			return;
 		}
 
-		System.out.println("enter the new title of the item");
-		String new_title = sc.next().trim();
+		System.out.println("새로운 일정제목을 입력하세요.");
+		String new_title = sc.nextLine().trim();
 		if (l.isDuplicate(new_title)) {
-			System.out.println("title can't be duplicate");
+			System.out.println("중복된 일정입니다. ");
 			return;
 		}
 		
-		System.out.println("enter the new description ");
-		String new_description = sc.next().trim();
+		System.out.println("새로운 일정내용을 입력하세요. ");
+		String new_description = sc.nextLine().trim();
 		for (TodoItem item : l.getList()) {
 			if (item.getTitle().equals(title)) {
 				l.deleteItem(item);
 				TodoItem t = new TodoItem(new_title, new_description);
 				l.addItem(t);
-				System.out.println("item updated");
+				System.out.println("수정되었습니다. ");
 			}
 		}
 
@@ -84,7 +84,7 @@ public class TodoUtil {
 
 	public static void listAll(TodoList l) {
 		for (TodoItem item : l.getList()) {
-			System.out.println("Item Title: " + item.getTitle() + "  Item Description:  " + item.getDesc());
+			System.out.println("일정제목 : " + item.getTitle() + "  일정내용 :  " + item.getDesc());
 		}
 	}
 }
