@@ -14,19 +14,22 @@ public class TodoMain {
 		TodoList l = new TodoList();
 		boolean isList = false;
 		boolean quit = false;
-		Menu.prompt();
-		String choice2 = sc.nextLine();
-		if(choice2 != "help") {
+		
 			Menu.displaymenu();
+			TodoUtil.loadList(l, "todolist.txt");
 		do {
 			//Menu.displaymenu();
 			isList = false;
 			String choice = sc.nextLine();
 		
 			switch (choice) {
-		/*	case "help":
+			case "menu":
+				Menu.prompt();
+				break;
+				
+			case "help":
 				Menu.displaymenu();
-				break;*/
+				break;
 				
 			case "add":
 				TodoUtil.createItem(l);
@@ -62,6 +65,7 @@ public class TodoMain {
 
 			case "exit":
 				quit = true;
+				TodoUtil.saveList(l, "todolist.txt");
 				break;
 
 			default:
@@ -71,6 +75,6 @@ public class TodoMain {
 			
 			if(isList) l.listAll();
 		} while (!quit);
-		}
+		
 	}
 }
