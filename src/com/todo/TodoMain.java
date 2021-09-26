@@ -30,6 +30,10 @@ public class TodoMain {
 			case "help":
 				Menu.displaymenu();
 				break;
+			
+			case "find":
+				TodoUtil.find(l);
+				break;
 				
 			case "add":
 				TodoUtil.createItem(l);

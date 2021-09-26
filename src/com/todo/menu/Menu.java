@@ -16,6 +16,7 @@ public class Menu {
         System.out.println("6. 이름역순으로정렬  ( ls_name_desc )");
         System.out.println("7. 추가시간별정렬  ( ls_date )");
         System.out.println("8. 종료  (Or press escape key to exit)");
+        System.out.println("9. 찾기 (find <단어>) ");
         System.out.println("명령어를 입력하세요  >");
         System.out.println();
 
