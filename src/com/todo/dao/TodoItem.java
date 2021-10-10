@@ -1,5 +1,9 @@
 package com.todo.dao;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -9,10 +13,13 @@ public class TodoItem {
     private String current_date;
     private String category;
     private String due_date;
+    private int Id;
+	Connection conn;
 
 
 
-    public TodoItem(String title, String desc, String category){
+
+    public TodoItem(String title, String desc, String category, String due_date){
   
     	this.title=title;
         this.desc=desc;
@@ -21,6 +28,7 @@ public class TodoItem {
         this.category = category;
         SimpleDateFormat s = new SimpleDateFormat ("yyyy/MM/dd HH:mm:ss");
         this.due_date= s.format(new Date());
+        this.Id = Id;
     }
     
  
@@ -78,6 +86,36 @@ public class TodoItem {
     public String toSaveString() {
     	return title + "##" + desc + "## " + current_date + "\n";
     }
+    
+    public int getCount() {
+    	Statement stmt;
+    	int count = 0;
+    	try {
+			stmt = conn.createStatement();
+    		String sql = "SELECT count(id) FROM list:";
+    		ResultSet rs = stmt.executeQuery(sql);
+    		rs.next();
+    		count = rs.getInt("count(id)");
+    		stmt.close();
+    	} catch (SQLException e) {
+    		e.printStackTrace();
+    	}
+    	return count;
+    }
+
+
+	public int getId() {
+		// TODO Auto-generated method stub
+		return Id;
+	}
+
+
+	public void setId(int Id) {
+		// TODO Auto-generated method stub
+        this.Id = Id;
+
+	}
+
 
 
 	
