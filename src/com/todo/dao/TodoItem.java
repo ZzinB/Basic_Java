@@ -1,6 +1,7 @@
 package com.todo.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,21 +19,19 @@ public class TodoItem {
 
 
 
-
     public TodoItem(String title, String desc, String category, String due_date){
   
     	this.title=title;
         this.desc=desc;
-        SimpleDateFormat  f = new SimpleDateFormat ("yyyy/MM/dd");
+        SimpleDateFormat  f = new SimpleDateFormat ("yyyy/MM/dd HH:mm:ss");
         this.current_date= f.format(new Date());
         this.category = category;
-        SimpleDateFormat s = new SimpleDateFormat ("yyyy/MM/dd HH:mm:ss");
+        SimpleDateFormat s = new SimpleDateFormat ("yyyy/MM/dd ");
         this.due_date= s.format(new Date());
-        this.Id = Id;
     }
     
- 
-	public String getTitle() {
+    
+    public String getTitle() {
         return title;
     }
 /*	public String getNum() {
@@ -84,11 +83,17 @@ public class TodoItem {
     
   //  @Override
     public String toSaveString() {
-    	return title + "##" + desc + "## " + current_date + "\n";
+    	return title + "##" + category + "##" + desc + "## " + current_date + "##" + due_date + "\n";
     }
     
+//  @Override
+    public String toString() {
+    	return Id + "." + "["+ category +"]" + title + " - " + desc + " - " + due_date + " - " + current_date + "\n";
+    }
+    
+    
     public int getCount() {
-    	Statement stmt;
+    	Statement stmt; 
     	int count = 0;
     	try {
 			stmt = conn.createStatement();

@@ -91,14 +91,15 @@ public class TodoUtil {
 
 		System.out.println("새로운 일정제목 > ");
 		new_title = sc.next().trim();
-		/*if (l.isDuplicate(new_title)) {
+		sc.nextLine();
+		if (l.isDuplicate(new_title)) {
 			System.out.println("중복된 일정입니다. ");
 			return;
-		}*/
+		}
 		
 		System.out.println("새로운 카테고리 > ");
-		new_category = sc.next();
-
+		new_category = sc.next().trim();
+		
 		System.out.println("새로운 일정내용 > ");
 		new_desc = sc.nextLine().trim();
 		
@@ -134,25 +135,39 @@ public class TodoUtil {
 		
 	}
 	
+public static void listAll(TodoList l) {
+
+		
+		System.out.println("[전체 목록], 총 "+l.getCount()+"개");
+		
+		for (TodoItem item : l.getList()) {
+			System.out.println(item.toString());
+		}
+		
+	}
+	
+	
 	public static void listAll(TodoList l, String orderby, int ordering) {
-		int i = 1;
+	//	int i = 1;
 		
 		
 		System.out.printf("[전체 목록, 총 %d 개 ]\n", l.getCount());
 		for (TodoItem item : l.getOrderedList(orderby, ordering)) {
 			System.out.println(item.toString());
+		//	System.out.println( "["+ item.getCategory() +"]" + item.getTitle() + " - " +  item.getDesc() + " - " + item.getCurrent_date() + " ~ " + item.getDue_date());
+		//	System.out.println("[" +item.getCategory() + "] "+item.getTitle() + " - " +  item.getDesc() +" - " + item.getCurrent_date() + " - " + item.getDue_date());
 			
 		}
-		for (TodoItem item : l.getList(orderby)) {
+	/*	for (TodoItem item : l.getList(orderby)) {
 			//System.out.println( "["+ item.getCategory() +"]" + item.getTitle() + " - " +  item.getDesc() + " - " + item.getCurrent_date() + " ~ " + item.getDue_date());
 			System.out.println(i + ". "+ "[" +item.getCategory() + "] "+item.getTitle() + " - " +  item.getDesc() +" - " + item.getCurrent_date() + " - " + item.getDue_date());
 			i++;
 		} 
-		//	return i;
+		//	return i;*/
 
 	}
 	
-	public static void saveList(TodoList l, String todolist) {
+/*	public static void saveList(TodoList l, String todolist) {
 		try {
 			Writer w = new FileWriter("todolist.txt");
 			
@@ -200,7 +215,7 @@ public class TodoUtil {
 			e.printStackTrace();
 		}
 	}
-
+*/
 	public static void listCateAll(TodoList l) {
 		// TODO Auto-generated method stub
 		int count = 0;
@@ -213,8 +228,8 @@ public class TodoUtil {
 	
 	public static void findCateList(TodoList l, String cate) {
 		int count = 0;
-		for(TodoItem item : l.getListCategory(cate));{
-			System.out.println(l.toString());
+		for(TodoItem item : l.getListCategory(cate)){
+			System.out.println(item.toString());
 			count++;
 		}
 		System.out.printf("\n총 %d개의 항목을 찾았습니다.\n",count);

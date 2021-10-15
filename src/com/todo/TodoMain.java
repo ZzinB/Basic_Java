@@ -12,7 +12,7 @@ public class TodoMain {
 	
 		Scanner sc = new Scanner(System.in);
 		TodoList l = new TodoList();
-		l.importData("todolist.txt");
+		//l.importData("todolist.txt");
 		boolean isList = false;
 		boolean quit = false;
 		
@@ -21,7 +21,7 @@ public class TodoMain {
 		do {
 			//Menu.displaymenu();
 			isList = false;
-			String choice = sc.nextLine();
+			String choice = sc.next().trim();
 		
 			switch (choice) {
 			case "menu":
@@ -50,7 +50,7 @@ public class TodoMain {
 				break;
 				
 			case "ls":
-				TodoUtil.listAll(l, null, 1);
+				TodoUtil.listAll(l);
 				break;
 
 			case "ls_name":
@@ -88,13 +88,13 @@ public class TodoMain {
 				break;
 
 			case "find_cate":
-				String cate = sc.nextLine().trim();
+				String cate = sc.next().trim();
 				TodoUtil.findCateList(l, cate);
 				break;
 				
 			case "exit":
 				quit = true;
-				TodoUtil.saveList(l, "todolist.txt");
+			//	TodoUtil.saveList(l, "todolist.txt");
 				break;
 
 			default:
