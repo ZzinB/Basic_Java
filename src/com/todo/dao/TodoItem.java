@@ -15,11 +15,14 @@ public class TodoItem {
     private String category;
     private String due_date;
     private int Id;
+    private int is_completed;
+    private String star; //중요도
+    private String person;//함께하는사
 	Connection conn;
 
 
 
-    public TodoItem(String title, String desc, String category, String due_date){
+    public TodoItem(String title, String desc, String category, String due_date, String star, String person){
   
     	this.title=title;
         this.desc=desc;
@@ -28,10 +31,26 @@ public class TodoItem {
         this.category = category;
         SimpleDateFormat s = new SimpleDateFormat ("yyyy/MM/dd ");
         this.due_date= s.format(new Date());
+        this.star = star;
+        this.person = person;
     }
     
     
-    public String getTitle() {
+    public TodoItem(int is_completed) {
+		// TODO Auto-generated constructor stub
+    	this.is_completed = is_completed;
+	}
+
+
+	public TodoItem(String title) {
+		// TODO Auto-generated constructor stub
+    	this.title=title;
+
+	}
+
+
+
+	public String getTitle() {
         return title;
     }
 /*	public String getNum() {
@@ -83,13 +102,18 @@ public class TodoItem {
     
   //  @Override
     public String toSaveString() {
-    	return title + "##" + category + "##" + desc + "## " + current_date + "##" + due_date + "\n";
+    	return title + "##" + category + "##" + desc + "## " + current_date + "##" + due_date +  "\n";
     }
     
 //  @Override
     public String toString() {
-    	return Id + "." + "["+ category +"]" + title + " - " + desc + " - " + due_date + " - " + current_date + "\n";
-    }
+    	if(is_completed == 1) {
+        	return Id + "." +"[" + " V "+"]"+"["+ category +"]"  + title + " ( " + star + " ) " + " - " + desc + " - " + due_date + " - " + current_date + " - " + person  +"\n";
+    	}else {
+    	    return Id + "." + "[" + category +"]"  + title  + " ( " + star + " ) " + " - " + desc + " - " + due_date + " - " + current_date + " - " + person  +"\n";
+    	}
+    	}
+
     
     
     public int getCount() {
@@ -115,14 +139,34 @@ public class TodoItem {
 	}
 
 
-	public void setId(int Id) {
+	public  void setId(int Id) {
 		// TODO Auto-generated method stub
         this.Id = Id;
 
 	}
+	
+	public int getComp() {
+		return is_completed;
+	}
+	
+	public void setComp(int is_completed) {
+		this.is_completed = is_completed;
+	}
 
+	public String getstar() {
+        return star;
+    }
 
+    public void setstar(String star) {
+        this.star = star;
+    }
+    public String getperson() {
+        return person;
+    }
 
+    public void setperson(String person) {
+        this.person = person;
+    }
 	
 }
 

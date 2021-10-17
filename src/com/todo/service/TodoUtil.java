@@ -9,6 +9,7 @@ import java.io.Reader;
 import java.io.Writer;
 import java.util.*;
 
+import com.google.gson.Gson;
 import com.todo.dao.TodoItem;
 import com.todo.dao.TodoList;
 
@@ -16,8 +17,9 @@ public class TodoUtil {
 	
 	public static void createItem(TodoList list) {
 		
-		String title, desc, category, due_date;
+		String title, desc, category, due_date, star, person;
 		Scanner sc = new Scanner(System.in);
+//		Gson gson = new Gson();
 		
 		System.out.print("[항목추가]\n" + "제목 > ");
 		
@@ -34,39 +36,85 @@ public class TodoUtil {
 		System.out.print("일정내용 > ");
 		desc = sc.nextLine().trim();
 		
-		
 		System.out.print("마감일자 > ");
 		due_date = sc.nextLine().trim();
 		
-		TodoItem t = new TodoItem(title, desc, category, due_date);
+		System.out.print("중요도 > (1~5) ");
+		star = sc.nextLine().trim();
+		
+		System.out.print("함께하는 사람 > ");
+		person = sc.nextLine().trim();
+		
+		TodoItem t = new TodoItem(title, desc, category, due_date, star, person);
+/*		String jsonstr = gson.toJson(list.getList());
+		
+		try {
+			FileWriter writer = new FileWriter("data.txt");
+			writer.write(jsonstr);
+			writer.close();
+			System.out.println("파일에 저장되었습니다.");
+		}catch(IOException e) {
+			e.printStackTrace();
+		}*/
+		
 		if(list.addItem(t)>0)
 			System.out.println("추가되었습니다.");
 	}
 
-	public static void deleteItem(TodoList l) {
-		
+	public static void deleteItem(TodoList l, int num) {
 		Scanner sc = new Scanner(System.in);
-	//	String title = sc.nextLine();
-	//	int num = sc.nextInt();
-		System.out.print("\n"
-				+ "========== Delete Item Section\n"
-				+ "삭제할 항목의 번호  >  \n"
-				+ "\n");
-		int index = sc.nextInt();
-		if(l.deleteItem(index) > 0) System.out.println("삭제되었습니다.");
-	//	for (TodoItem item : l.getList()) {
-			/*	if (title.equals ( item.getTitle())) */
-		/*	if(num == listAll(l)){
-				l.deleteItem(item);
-				break;*/
+		if(num == 1) {
+			System.out.print("\n"
+					+ "========== Delete Item Section\n"
+					+ "삭제할 항목의 제목  >  \n"
+					+ "\n");
+			String title = sc.nextLine();
+			for (TodoItem item : l.getList()) {
+					if (title.equals ( item.getTitle())) {
+						l.deleteItem(title);
+						System.out.println("삭제되었습니다.");				
+						break;
+					}
+			}
+		}
+		else if(num == 2) {
+			System.out.print("\n"
+					+ "========== Delete Item Section\n"
+					+ "삭제할 항목의 번호  >  \n"
+					+ "\n");
+			int index = sc.nextInt();
+			if(l.deleteItem(index) > 0) System.out.println("삭제되었습니다.");
+		}
+		else if(num ==3) {
+			System.out.print("\n"
+					+ "========== Delete Item Section\n"
+					+ "삭제할 항목의 카테고리  >  \n"
+					+ "\n");
+			String cate = sc.nextLine();
+			for (TodoItem item : l.getList()) {
+					if (cate.equals ( item.getCategory())) {
+						l.deleteItem2(cate);
+						System.out.println("삭제되었습니다.");				
+						break;
+					}
+			}
+		}
 			}
 		
 	
 
 
-	public static void updateItem(TodoList l) {
-		String new_title, new_desc, new_category, new_due_date;
+	public static void updateItem(TodoList l, int num) {
+		String new_title, new_desc, new_category, new_due_date, new_star, new_person;
 		Scanner sc = new Scanner(System.in);
+
+		System.out.println("\n"
+				+ "========== Edit Item Section\n"
+				+ "수정 할 항목 번호 >  \n"
+				+ "\n");
+		int index = sc.nextInt();
+//		if(num == 1) {
+		
 		/*System.out.println("\n"
 				+ "========== Edit Item Section\n"
 				+ "변경 일정제목 >  \n"
@@ -76,12 +124,6 @@ public class TodoUtil {
 			System.out.println("이름이 존재하지 않습니다. ");
 			return;
 		}*/
-		
-		System.out.println("\n"
-				+ "========== Edit Item Section\n"
-				+ "수정 할 항목 번호 >  \n"
-				+ "\n");
-		int index = sc.nextInt();
 	//	int num = sc.nextInt();
 	//	title = sc.nextLine().trim();
 	/*	if (!l.isDuplicate(title)) {
@@ -105,10 +147,29 @@ public class TodoUtil {
 		
 		System.out.println("새로운 마감일 > ");
 		new_due_date = sc.nextLine().trim();
+		
+		System.out.print("새로운 중요도 > (1~5) ");
+		new_star = sc.nextLine().trim();
+		
+		System.out.print("새로운 함께하는사람 > ");
+		new_person= sc.nextLine().trim();
 	
-		TodoItem t = new TodoItem(new_title, new_desc, new_category, new_due_date);
+		TodoItem t = new TodoItem(new_title, new_desc, new_category, new_due_date, new_star, new_person);
 		t.setId(index);
 		if(l.updateItem(t) > 0) System.out.println("수정되었습니다.");
+		//}
+	/*	else if(num == 2) {
+			System.out.println("새로운 일정제목 > ");
+			new_title = sc.next().trim();
+			sc.nextLine();
+			if (l.isDuplicate(new_title)) {
+				System.out.println("중복된 일정입니다. ");
+				return;}
+			TodoItem t = new TodoItem(new_title);
+			if(l.updateItem2(t) > 0) System.out.println("수정되었습니다.");
+			}*/
+		
+		}
 		
 		
 	/*	for (TodoItem item : l.getList()) {
@@ -117,13 +178,11 @@ public class TodoUtil {
 			{
 				l.deleteItem(item);
 				TodoItem t = new TodoItem(new_title, new_description, new_category, new_due_Date);
-				l.addItem(t);
+//l.addItem(t);
 				System.out.println("수정되었습니다. ");
 			}
 		}*/
 		
-
-	}
 
 	public static void findList(TodoList l, String keyword) {
 		int count = 0;
@@ -167,11 +226,45 @@ public static void listAll(TodoList l) {
 
 	}
 	
-/*	public static void saveList(TodoList l, String todolist) {
+	public static void listPersonAll(TodoList l,String keyword) {
+		// TODO Auto-generated method stub
+		int count = 0;
+		for(TodoItem item : l.getListperson(keyword)) {
+			System.out.print(item.toString());
+			count++;
+		}
+		System.out.printf("총 %d개의 항목을 찾았습니다.\n", count);
+
+	}
+	
+	
+	
+	public static void GSONsaveList(TodoList l, String todolist) {
+		Gson gson = new Gson();
+		
+//		String title, desc, current_date = null;
+//		TodoItem t = new TodoItem (title, desc, current_date);
+		
+		
+//		for (TodoItem item : l.getList(todolist)) {
+				String jsonstr = gson.toJson(l.getList());
+				System.out.println(jsonstr);	
+//				}
 		try {
-			Writer w = new FileWriter("todolist.txt");
+			Writer w = new FileWriter("data.txt");
+			w.write (jsonstr);
+			w.close();
+			System.out.println("\n 정보 저장 완료 ");
+			}catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 			
-		//	String title, desc, current_date = null;
+			
+			
+			
+			
+	/*	//	String title, desc, current_date = null;
 		//	TodoItem t = new TodoItem (title, desc, current_date);
 		//	TodoItem t = new TodoItem ("ㅂ", "ㅈ", "ㄷ" );
 			for (TodoItem item : l.getList(todolist)) {
@@ -235,5 +328,40 @@ public static void listAll(TodoList l) {
 		System.out.printf("\n총 %d개의 항목을 찾았습니다.\n",count);
 	}
 
+	public static void findStarList(TodoList l, String num) {
+		int count = 0;
+		for(TodoItem item : l.getListStar(num)){
+			System.out.println(item.toString());
+			count++;
+		}
+		System.out.printf("\n총 %d개의 항목을 찾았습니다.\n",count);
+	}
 	
+
+		
+	
+	
+	
+	
+	public static void completeItem(TodoList l, int comp) {
+		int is_completed = 1;
+		TodoItem t = new TodoItem(is_completed);
+		t.setId(comp);
+		if(l.completeItem(comp) > 0)
+		System.out.printf("\n완료 체크하였습니다.\n");
+		
+	}
+	
+	
+	public static void complistAll(TodoList l,int comp) {
+		// TODO Auto-generated method stub
+		int count = 0;
+		for(TodoItem item : l.getListComp(comp)) {
+			System.out.println(item.toString());
+			count++;
+		}
+		System.out.printf("\n총 %d개의 항목이 체크되어 있습니다.\n", count);
+	}
+
+
 }

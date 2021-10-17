@@ -37,16 +37,28 @@ public class TodoMain {
 				TodoUtil.findList(l, keyword);
 				break;
 				
+			case "comp":
+				int comp = sc.nextInt();
+				TodoUtil.completeItem(l, comp);
+				break;
+				
+			case "ls_comp":
+				System.out.println("완료된 항목을 출력하였습니다.");
+				TodoUtil.complistAll(l, 1);
+				break;
+				
 			case "add":
 				TodoUtil.createItem(l);
 				break;
 			
 			case "del":
-				TodoUtil.deleteItem(l);
+				int num = sc.nextInt();
+				TodoUtil.deleteItem(l, num);
 				break;
 				
 			case "edit":
-				TodoUtil.updateItem(l);
+				int num2 = sc.nextInt();
+				TodoUtil.updateItem(l, num2);
 				break;
 				
 			case "ls":
@@ -92,6 +104,19 @@ public class TodoMain {
 				TodoUtil.findCateList(l, cate);
 				break;
 				
+			case "find_star":
+				String star = sc.next().trim();
+				TodoUtil.findStarList(l, star);
+				break;
+				
+			case "ls_person":
+				String person = sc.next().trim();
+				TodoUtil.listPersonAll(l, person);
+				break;
+				
+			case "save":
+				TodoUtil.GSONsaveList(l, "data.txt");
+			
 			case "exit":
 				quit = true;
 			//	TodoUtil.saveList(l, "todolist.txt");
