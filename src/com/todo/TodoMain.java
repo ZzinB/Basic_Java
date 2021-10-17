@@ -20,6 +20,7 @@ public class TodoMain {
 		//	TodoUtil.loadList(l, "todolist.txt");
 		do {
 			//Menu.displaymenu();
+			Menu.prompt();
 			isList = false;
 			String choice = sc.next().trim();
 		
@@ -123,7 +124,7 @@ public class TodoMain {
 				break;
 
 			default:
-				System.out.println("명령어를 입력하세요  >");
+				System.out.println("메뉴를 확인하려면 도움을 요청하세요 (help) >");
 				break;
 			}
 			

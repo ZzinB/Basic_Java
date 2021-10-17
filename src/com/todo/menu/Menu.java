@@ -2,9 +2,10 @@ package com.todo.menu;
 public class Menu {
 	
 	public static void prompt() {
-        System.out.println("메뉴를 확인하려면 도움을 요청하세요 (help) ");
+        System.out.println("\n명령어를 입력하세요  >");
 
 	}
+	
     public static void displaymenu()
     {
         System.out.println();
@@ -23,10 +24,11 @@ public class Menu {
         System.out.println("13. 중요도찾기 (find_star <1~5>) ");
         System.out.println("14. 같은사람과하는목록정렬 (ls_person <사람>) ");
         System.out.println("15. JSON파일형식으로 저장하기 (save) ");
+        System.out.println("16. 완료항목표시하기 (comp <번호>) ");
 
 
 
-        System.out.println("명령어를 입력하세요  >");
+//        System.out.println("명령어를 입력하세요  >");
         System.out.println();
 
     }

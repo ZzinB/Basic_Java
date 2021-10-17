@@ -59,6 +59,7 @@ public class TodoUtil {
 		
 		if(list.addItem(t)>0)
 			System.out.println("추가되었습니다.");
+
 	}
 
 	public static void deleteItem(TodoList l, int num) {
