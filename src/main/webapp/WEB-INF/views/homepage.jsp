@@ -44,7 +44,7 @@
 		<div class="table-wrapper">
 			<div class="table-title">
 				<div class="row">
-					<div class="col-sm-6">
+					<div class="col-sm-6" style="margin-left:25%;">
 						<div class="jumbotron text-center">	
 						<h2>
 							CarSharing <b>Room</b>
@@ -52,7 +52,7 @@
 						</h2>
 						</div>
 					</div>
-					<div class="col-sm-6">
+					<div class="col-sm-6" style="float:right">
 					       <ul class="nav navbar-nav navbar-right">
 					
 						<a href="../login/logout" class="btn btn-danger"
@@ -65,7 +65,7 @@
 					</div>
 				</div>
 			</div>
-			<button type="button" onclick="location.href='./makeRoom/${login.uid}'" class="btn btn-success"
+			<button type="button" onclick="location.href='makeRoom/${login.uid}'" class="btn btn-success"
 							data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add
 								Room</span></button> 
 			<table class="table table-striped table-hover">
@@ -74,7 +74,7 @@
 						<th>방번호</th>
 						<th>인원</th>
 						<th>내용
-						<th>
+						</th>
 					</tr>
 
 				</thead>

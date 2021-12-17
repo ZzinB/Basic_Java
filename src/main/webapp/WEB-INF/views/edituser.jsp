@@ -24,7 +24,6 @@ body {
 	background: -o-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
 	background: linear-gradient(to top right, #92b5db 0%, #1d466c 100%);
 }
-
 .input-form {
 	max-width: 680px;
 	margin-top: 80px;
@@ -37,14 +36,11 @@ body {
 	-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
 	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
 }
-
 #input_group {
 	margin-right: -30px;
 	padding: 10px;
 	text-align: center;
 }
-
-
 </style>
 </head>
 <body>
@@ -63,19 +59,19 @@ body {
 					<table id="edit" >
 						<div class="row">
 							<div class="col-md-6 mb-3">
-								<tr>
+								<tr style="margin-top : -10px">
 									<td>Name</td>
 									<td><form:input path="uname" /></td>
 								</tr>
 							</div>
 							<div class="col-md-6 mb-3">
-								<tr>
+								<tr style="margin-top : 10px">
 									<td>id</td>
 									<td><form:input path="id" /></td>
 								</tr>
 							</div>
 							<div class="col-md-6 mb-3">
-								<tr>
+								<tr style="margin-top : 10px">
 									<td>password</td>
 									<td><form:textarea cols="20" rows="1" path="password" /></td>
 								</tr>
