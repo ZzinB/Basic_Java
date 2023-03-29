@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Room">
+	<select id="getRoomList" resultType="room">
+		select * from room order by room_num desc
+	</select>
+	<select id="getRoom" resultType="room">
+		select * from room 
+		where room_num=#{num}
+	</select>
+	<select id="getRoomFromMaster" resultType="room">
+		select * from room 
+		where room_master=#{room_master}
+	</select>
+	<insert id="insertRoom">
+		insert into room (room_master, room_contents)
+		values
+		(#{room_master} , #{room_contents})
+	</insert>
+	<update id="updateRoomCount">
+		update room
+		set room_count=#{room_count}
+		where room_num=#{room_num}
+	</update>
+	<delete id="deleteRoom">
+		delete from room where room_num=#{room_num}
+	</delete>
+	
+
+</mapper>

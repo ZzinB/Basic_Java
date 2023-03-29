@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="User">
+	<select id="getUserLoginInfo" resultType="user">
+		select * from user
+		where id=#{id} and password=#{password}
+	</select>
+	<select id="getUser" resultType="user">
+		select * from user
+		where uid=#{uid}
+	</select>
+	<select id="getRoomUserList" resultType="user">
+		select * from user
+		where room_num=#{num}
+		order by uid asc
+	</select>
+	<update id="updateUser">
+		update user
+		set uname=#{uname}, id=#{id}, password=#{password}
+		where uid=#{uid}
+	</update>
+	<update id="updateRoomNum">
+		update user
+		set room_num=#{room_num}
+		where uid=#{uid}
+	</update>
+	<update id="updatePayment">
+		update user
+		set payment=#{payment}
+		where uid=#{uid}
+	</update>
+	<update id="updateBlack">
+		update user
+		set black=#{black}
+		where uid=#{uid}
+	</update>
+	<insert id="insertUser">
+		insert into user (uid, uname, id, password)
+		values
+		(#{uid} , #{uname} , #{id}, #{password})
+	</insert>
+
+</mapper>

@@ -1,0 +1,96 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@page
+	import="com.mycom.myapp.board.BoardDAO, com.mycom.myapp.board.BoardVO"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<!DOCTYPE html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>회원수 화면 샘플 - Bootstrap</title>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<style>
+body {
+	min-height: 100vh;
+	background: -webkit-gradient(linear, left bottom, right top, from(#92b5db),
+		to(#1d466c));
+	background: -webkit-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+	background: -moz-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+	background: -o-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+	background: linear-gradient(to top right, #92b5db 0%, #1d466c 100%);
+}
+.input-form {
+	max-width: 680px;
+	margin-top: 80px;
+	padding: 32px;
+	background: #fff;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+}
+#input_group {
+	margin-right: -30px;
+	padding: 10px;
+	text-align: center;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+
+		<div class="input-form-backgroud row">
+
+			<div class="input-form col-md-12 mx-auto">
+				<h2 class="mb-3"></h2>
+				<h3 class="mb-3">
+					<b>회원정보수정</b>
+				</h3>
+
+				<form:form commandName="userVO" method="POST" action="../editok">
+					<form:hidden path="uid" />
+					<table id="edit" >
+						<div class="row">
+							<div class="col-md-6 mb-3">
+								<tr style="margin-top : -10px">
+									<td>Name</td>
+									<td><form:input path="uname" /></td>
+								</tr>
+							</div>
+							<div class="col-md-6 mb-3">
+								<tr style="margin-top : 10px">
+									<td>id</td>
+									<td><form:input path="id" /></td>
+								</tr>
+							</div>
+							<div class="col-md-6 mb-3">
+								<tr style="margin-top : 10px">
+									<td>password</td>
+									<td><form:textarea cols="20" rows="1" path="password" /></td>
+								</tr>
+							</div>
+						</div>
+
+					</table>
+					<div id="input_group">
+						<input type="submit" value="수정하기"
+							style="border: none; background-color: #92b5db; border-radius: 5px; color: white;" />
+						<input type="button" value="취소하기"
+							onclick="location.href='../list'"
+							style="border: none; background-color: #92b5db; border-radius: 5px; color: white;" />
+					</div>
+				</form:form>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>
