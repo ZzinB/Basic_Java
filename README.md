@@ -23,3 +23,7 @@ Room List Page(HomePage)에서, 방을 만들고, 그 방에 들어갈 수 있�
 In Detail Page, GET METHOD로 받은, uid, room_num으로  
 roomVO, userVO 객체를 생성. (**getUser**, **getRoom**)  
 그리고 count와 master을 비교하여 덧셈 뺄셈을 해줌.  
+
+
+-----
+# 2. TodoListApp
